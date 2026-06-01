@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tropics — A Starting Place · v0.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f5ecd9;
+  --paper-warm: #ede0c4;
+  --paper-deep: #e3d4b3;
+  --ink: #1d160e;
+  --ink-soft: #3a2e1f;
+  --muted: #7a6a52;
+  --rule: #d4c4a3;
+  --coral: #c46b4f;
+  --coral-deep: #9a4a30;
+  --gold: #c8975f;
+  --gold-deep: #8a5f38;
+  --teal: #2a5d5d;
+  --night: #14110a;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.7;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 96px 64px;
+  position: relative;
+}
+
+@media (max-width: 768px) { .page { padding: 56px 24px; } }
+
+/* ========== DRAFT BADGE ========== */
+.draft-badge {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: var(--coral);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 8px 14px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ========== COVER ========== */
+.cover {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80px 64px 72px;
+  background-image:
+    linear-gradient(180deg, rgba(20,17,10,0.4) 0%, rgba(20,17,10,0.55) 50%, rgba(20,17,10,0.85) 100%),
+    url('https://zillaspace.github.io/THE-TROPICS-4-8-PROFORMA/assets/tropical%20grounds%20panorama.png');
+  background-size: cover;
+  background-position: center;
+  color: var(--paper);
+}
+
+@media (max-width: 768px) { .cover { padding: 48px 24px; } }
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.cover-mark {
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  font-style: italic;
+  opacity: 1;
+}
+
+.cover-mark em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.cover-title-block {
+  margin-top: 22vh;
+  max-width: 820px;
+}
+
+.cover-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-shadow: 0 0 12px rgba(0,0,0,0.6);
+}
+
+.cover-title {
+  font-family: var(--serif);
+  font-size: clamp(58px, 8vw, 104px);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+}
+
+.cover-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+.cover-sub {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.95;
+  max-width: 640px;
+  line-height: 1.4;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+}
+
+.cover-rule {
+  width: 80px;
+  height: 2px;
+  background: var(--coral);
+  margin: 32px 0;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+  opacity: 0.92;
+}
+
+.cover-bottom-block { line-height: 1.8; }
+
+.cover-bottom-block strong {
+  color: var(--gold);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ========== NOTE FROM MARK ========== */
+.note-from {
+  background: var(--paper-warm);
+  padding: 64px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.note-from-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.note-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.note-from p {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+
+.note-from p:last-of-type { margin-bottom: 0; }
+
+.note-from .sig {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--coral-deep);
+  margin-top: 28px;
+}
+
+/* ========== SECTION ========== */
+.section { padding: 72px 0; }
+.section + .section { border-top: 1px solid var(--rule); }
+
+.section-number {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  max-width: 740px;
+}
+
+.section-heading em {
+  font-style: italic;
+  color: var(--coral-deep);
+  font-weight: 300;
+}
+
+.section-lead {
+  font-family: var(--serif);
+  font-size: clamp(19px, 1.8vw, 22px);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-style: italic;
+  max-width: 700px;
+  margin-bottom: 36px;
+}
+
+.prose p {
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+  max-width: 720px;
+}
+
+.prose p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ========== PRINCIPAL — SIMPLIFIED ========== */
+.who {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 36px 0;
+}
+
+.who-card {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.who-card:last-child { border-bottom: none; }
+
+.who-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.who-name {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.who-leading {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  font-weight: 700;
+}
+
+.who-bio {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 760px;
+}
+
+.who-bio strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ========== CAPITAL GRID ========== */
+.capital-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+
+@media (max-width: 720px) { .capital-grid { grid-template-columns: 1fr; } }
+
+.capital-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 22px 26px;
+}
+
+.capital-card.highlight {
+  background: var(--paper-warm);
+  border-color: var(--coral);
+  border-left: 4px solid var(--coral);
+}
+
+.capital-card-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.capital-card-who {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.capital-card-what {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ========== STACK BAR ========== */
+.stack-bar {
+  display: flex;
+  width: 100%;
+  height: 56px;
+  margin: 32px 0 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.stack-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  padding: 0 10px;
+  text-align: center;
+}
+
+.stack-seg-sba { background: var(--teal); flex-basis: 64%; }
+.stack-seg-lp { background: var(--coral); flex-basis: 18%; }
+.stack-seg-gp { background: var(--gold-deep); flex-basis: 4.5%; }
+.stack-seg-reno-implied { background: var(--coral-deep); flex-basis: 13.5%; }
+
+.stack-key {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.stack-key-item { display: flex; align-items: center; gap: 6px; }
+
+.stack-key-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* ========== HORIZONS ========== */
+.horizons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  margin: 36px 0;
+  border-top: 2px solid var(--ink);
+}
+
+@media (max-width: 800px) { .horizons { grid-template-columns: 1fr; } }
+
+.horizon {
+  padding: 28px 28px 36px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.horizon:last-child { border-right: none; }
+
+.horizon-when {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.horizon-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.horizon-body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ========== PULL QUOTE ========== */
+.pull-quote {
+  margin: 48px 0;
+  padding: 36px 44px;
+  background: var(--paper-warm);
+  border-top: 2px solid var(--coral);
+  border-bottom: 1px solid var(--rule);
+}
+
+.pull-quote-text {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.4;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.pull-quote-attribution {
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  font-weight: 700;
+}
+
+/* ========== STAGES ========== */
+.stages { margin: 28px 0; }
+
+.stage-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+
+.stage-row:last-child { border-bottom: none; }
+
+.stage-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--coral);
+  line-height: 1;
+}
+
+.stage-content h4 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.stage-content p {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.stage-content .stage-lead {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--coral-deep);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* ========== LENSES ========== */
+.lens-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.lens {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 22px 26px;
+  position: relative;
+}
+
+.lens.recommended {
+  background: var(--paper-warm);
+  border-color: var(--coral);
+  border-left-width: 4px;
+}
+
+.lens-tag {
+  position: absolute;
+  top: -10px;
+  left: 22px;
+  background: var(--coral);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  font-weight: 700;
+}
+
+.lens-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.lens-body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.lens-body strong { color: var(--ink); font-weight: 600; }
+
+/* ========== PHOTO BREAK ========== */
+.photo-break {
+  width: 100%;
+  height: 360px;
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  position: relative;
+}
+
+.photo-break-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.75;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+/* ========== INLINE REMINDER ========== */
+.reminder {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--gold-deep);
+  padding: 16px 0;
+  margin: 24px 0 0;
+  border-top: 1px dotted var(--gold);
+  max-width: 720px;
+}
+
+/* ========== FOOTER ========== */
+.foot {
+  padding: 56px 64px;
+  background: var(--night);
+  color: var(--paper);
+}
+
+.foot-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.foot-block {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 2;
+  opacity: 0.92;
+}
+
+.foot-block strong { color: var(--coral); font-weight: 700; }
+
+.foot-mark {
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  font-style: italic;
+}
+
+.foot-mark em { color: var(--coral); font-style: normal; }
+
+/* ========== UTILITY ========== */
+.gold-rule {
+  width: 60px;
+  height: 2px;
+  background: var(--coral);
+  margin: 24px 0;
+}
+
+a { color: var(--coral-deep); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="draft-badge">v0.2 · A Starting Place</div>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-mark">Las Brisas Hotel Group <em>·</em> The Tropics</div>
+    <div>For The Four Of Us</div>
+  </div>
+
+  <div class="cover-title-block">
+    <div class="cover-eyebrow">A Working Snapshot · v0.2</div>
+    <h1 class="cover-title">A starting <em>place.</em></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">Where we are today on the partnership, what we're putting in, and how we think we work together. All of it open to change.</p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-bottom-block">
+      <strong>For</strong>
+      Raymond · Michelle<br>
+      Michael · Mark
+    </div>
+    <div class="cover-bottom-block" style="text-align:right;">
+      <strong>Status</strong>
+      Working Draft<br>
+      May 2026
+    </div>
+  </div>
+</div>
+
+<!-- ============ NOTE FROM MARK ============ -->
+<div class="note-from">
+  <div class="note-from-inner">
+    <div class="note-eyebrow">A Note Before You Read</div>
+    <p>This is v0.2. A starting place. Not a position, not a proposal, not a thing that's been decided behind anyone's back. It's a working draft so the four of us have something concrete to push against in a real conversation.</p>
+    <p>Every line in here is open. If a role description is wrong, we change it. If a number is off, we fix it. If a section is missing, we add it. If something feels heavy, we lighten it. The whole point of starting here is so we don't argue over what's not written down.</p>
+    <p>The truth is, we won't really know how this works until we're in it. Roles are going to shift. We'll hire a GM. Some of us will lean in harder at different moments. The real moment of truth isn't this document. It's the refinance three or four years from now. Between now and then, we're figuring it out together.</p>
+    <div class="sig">— Mark</div>
+  </div>
+</div>
+
+<!-- ============ THE FOUR OF US ============ -->
+<div class="page">
+<section class="section" id="four">
+  <div class="section-number">01 — The Four Of Us</div>
+  <h2 class="section-heading">Who's at the table. <em>What each of us brings.</em></h2>
+  <p class="section-lead">Equal equity. Equal voice. Four kinds of mastery aimed at the same property. Bios below are intentionally short; they're not job descriptions, just a reminder of what each of us walks in with.</p>
+
+  <div class="who">
+    <div class="who-card">
+      <div class="who-header">
+        <div class="who-name">Raymond</div>
+        <div class="who-leading">Chairman</div>
+      </div>
+      <p class="who-bio">Five decades of hospitality leadership. Former President of Yellowstone National Park, President of Campbell Soup's Restaurant Division, Chairman of Best Western International. Operating background across 80 to 800 key properties, casinos, full service resorts, and standalone F&amp;B. Pioneered luxury resort markets in Mexico, Aruba, and the Caribbean. Currently a senior counsel on the LBHG portfolio. <strong>Active engagement is at his discretion, and tapers naturally as Raymond chooses; the role accommodates either.</strong></p>
+    </div>
+
+    <div class="who-card">
+      <div class="who-header">
+        <div class="who-name">Michelle</div>
+        <div class="who-leading">Capital, Investment &amp; Asset Management</div>
+      </div>
+      <p class="who-bio">Institutional capital markets background drawn from Marriott International and Starwood Hotels &amp; Resorts. Executed over $1.5B in hospitality real estate transactions, managed a $1B international asset portfolio. <strong>Currently runs day to day asset management of the LBHG portfolio alongside Raymond.</strong> Leads underwriting, capital structure, lender relationships, asset management, and the refinance and exit work that defines whether this deal performs.</p>
+    </div>
+
+    <div class="who-card">
+      <div class="who-header">
+        <div class="who-name">Michael</div>
+        <div class="who-leading">Operations &amp; Repositioning</div>
+      </div>
+      <p class="who-bio">Founded The Aspen Company. Repositioned two Relais &amp; Châteaux properties, Liss Ard Estate in Ireland and Abbaye de la Bussière in Burgundy. As CEO of a regional Eastern European hotel platform, scaled from three to nine properties and led the exit at <strong>22 times EBITDA</strong>. Previously advised global PE firms at KPMG and Deloitte on M&amp;A and operational turnarounds. Leads the on property repositioning execution through pre opening and stabilization, before handing day to day off to the GM.</p>
+    </div>
+
+    <div class="who-card">
+      <div class="who-header">
+        <div class="who-name">Mark</div>
+        <div class="who-leading">Brand &amp; Guest Experience</div>
+      </div>
+      <p class="who-bio">Twenty years as an executive producer and brand architect. Builds and delivers multi market campaigns and experiential platforms for <strong>Airbnb, Apple, and Meta</strong>. USC Film School trained. Applies brand system thinking to hospitality, where design, programming, and storytelling decide whether a property is somewhere to stay or somewhere to travel for. Leads brand, guest experience, programming, and marketing for The Tropics.</p>
+    </div>
+  </div>
+
+  <div class="reminder">Everything above is a starting view. Titles and lanes will move as we get into it.</div>
+</section>
+
+<!-- ============ WHAT WE'RE PUTTING IN ============ -->
+<section class="section" id="capital">
+  <div class="section-number">02 — What Each Of Us Is Putting In</div>
+  <h2 class="section-heading">Different shapes of contribution. <em>One equal partnership.</em></h2>
+  <p class="section-lead">The GP equity is split 25 percent across the four of us. What each of us puts in to earn that 25 percent looks different. That's the partnership.</p>
+
+  <div class="capital-grid">
+    <div class="capital-card highlight">
+      <div class="capital-card-label">Raymond</div>
+      <div class="capital-card-who">~$650K GP cash</div>
+      <div class="capital-card-what">The full GP equity check, written personally. The cash foundation that lets the deal close.</div>
+    </div>
+    <div class="capital-card">
+      <div class="capital-card-label">Michelle</div>
+      <div class="capital-card-who">Capital + pre close costs</div>
+      <div class="capital-card-what">Underwriting, capital structuring, lender relationships, asset management. Co advances pre close legal and diligence costs with Mark.</div>
+    </div>
+    <div class="capital-card">
+      <div class="capital-card-label">Michael</div>
+      <div class="capital-card-who">Full time operating</div>
+      <div class="capital-card-what">Full time on property leadership through pre opening, renovation, and Year 1. Repositioning execution and operating discipline.</div>
+    </div>
+    <div class="capital-card">
+      <div class="capital-card-label">Mark</div>
+      <div class="capital-card-who">Brand + pre close costs</div>
+      <div class="capital-card-what">Brand architecture, guest experience, programming, marketing, creative production. Co advances pre close legal and diligence costs with Michelle.</div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:28px;">
+    <p><strong>The principle.</strong> Raymond is writing the cash. The rest of us are writing time, expertise, network, and the pre close costs that get this thing to close. Equal 25 percent GP equity reflects the family's agreement that these are different shapes of the same contribution. Worth saying plainly so it's visible to the four of us and to anyone we share this with.</p>
+    <p><strong>How this fits the full stack.</strong> Raymond's $650K is the GP equity inside a roughly $14.5M total project. The LP tranche is approximately $2.6M that Mark and Michael are out raising. The balance is SBA backed senior debt. The chart below is rough proportion, not the model.</p>
+  </div>
+
+  <div class="stack-bar">
+    <div class="stack-seg stack-seg-sba">SBA Senior Debt</div>
+    <div class="stack-seg stack-seg-reno-implied">Renovation &amp; Costs</div>
+    <div class="stack-seg stack-seg-lp">LP $2.6M</div>
+    <div class="stack-seg stack-seg-gp">GP $650K</div>
+  </div>
+  <div class="stack-key">
+    <div class="stack-key-item"><div class="stack-key-swatch" style="background:var(--teal);"></div>SBA senior debt (majority of stack)</div>
+    <div class="stack-key-item"><div class="stack-key-swatch" style="background:var(--coral-deep);"></div>Renovation &amp; transaction costs</div>
+    <div class="stack-key-item"><div class="stack-key-swatch" style="background:var(--coral);"></div>LP capital ($2.6M)</div>
+    <div class="stack-key-item"><div class="stack-key-swatch" style="background:var(--gold-deep);"></div>GP equity ($650K, Raymond)</div>
+  </div>
+
+  <div class="reminder">If we want to revisit how the 25/25/25/25 reflects different contribution shapes, that's a conversation worth having openly rather than carrying it unsaid.</div>
+</section>
+
+<!-- ============ HOW WE WORK TOGETHER ============ -->
+<section class="section" id="work">
+  <div class="section-number">03 — How We Work Together, For Now</div>
+  <h2 class="section-heading">Light framework. <em>Heavy on goodwill.</em></h2>
+  <p class="section-lead">A starting view of who leads what in the early phase. Not a job description and not a fence. The point is to give us a shared way to talk about decisions, not to put us in lanes.</p>
+
+  <div class="prose">
+    <p><strong>The four of us together.</strong> Annual budget. Capital structure changes. Brand affiliations or management agreements. Asset sale or material refi. Key hires above department head. Anything that meaningfully changes how a guest experiences the property. Anything material we don't already have a view on. These come to the four of us.</p>
+    <p><strong>Raymond.</strong> Chairman of the partnership. Casting vote in the unlikely event of true deadlock. Senior LP and lender relationships. The credibility anchor when we need it.</p>
+    <p><strong>Michelle.</strong> Owns the capital story end to end. Underwriting, lender relationships, asset management oversight, refi prep, investor reporting. Co leads operating performance against the underwriting with Michael.</p>
+    <p><strong>Michael.</strong> Owns the property through pre opening, renovation, and stabilization. Hires and leads the senior hotel team. Hands day to day off to the GM when the asset is stable and the right operator is in seat.</p>
+    <p><strong>Mark.</strong> Owns brand, guest experience, programming, marketing, and creative production. Sets standards that hold once the GM is running the day to day.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pull-quote-text">Disagreements get talked through, not voted on. The four of us being in the room together is the governance mechanism. Everything else is logistics.</p>
+    <div class="pull-quote-attribution">How We Actually Decide</div>
+  </div>
+
+  <div class="reminder">This is the early phase view. Once a GM is in place and we are past stabilization, most of the day to day responsibilities tapers and the four of us are operating at board and asset management level.</div>
+</section>
+</div>
+
+<!-- ============ PHOTO BREAK ============ -->
+<div class="photo-break" style="background-image:url('https://zillaspace.github.io/THE-TROPICS-4-8-PROFORMA/assets/midcentury%20pool%20club.png');">
+  <div class="photo-break-caption">The Tropics · Palm Springs</div>
+</div>
+
+<div class="page">
+
+<!-- ============ THREE HORIZONS ============ -->
+<section class="section" id="horizons">
+  <div class="section-number">04 — Three Horizons</div>
+  <h2 class="section-heading">This is the figuring it out period. <em>The refi is the test.</em></h2>
+  <p class="section-lead">Roles in this document describe how we're starting. The shape of the partnership in Year 1 is different from Year 3 is different from Year 5. Worth saying out loud.</p>
+
+  <div class="horizons">
+    <div class="horizon">
+      <div class="horizon-when">Now to Year 1</div>
+      <h3 class="horizon-title">Figuring it out.</h3>
+      <p class="horizon-body">Acquisition, renovation, pre opening. Michael full time on property. Michelle running diligence, financing, and asset management setup. Mark leading brand build and programming launch. Raymond on senior counsel. We are testing what each of us actually carries best, and finding the texture of how we work together. Everything in this document is most accurate for this horizon.</p>
+    </div>
+    <div class="horizon">
+      <div class="horizon-when">Year 1 to 3</div>
+      <h3 class="horizon-title">Hiring the GM. Stabilizing.</h3>
+      <p class="horizon-body">A General Manager is hired to run day to day operations. Michael's full time presence tapers as the senior hotel team comes into form. Mark's role shifts from active build to brand standards and oversight. Michelle increases focus on asset management and refi preparation. Raymond steps back from any day to day. The four of us move toward board and asset management level engagement.</p>
+    </div>
+    <div class="horizon">
+      <div class="horizon-when">Year 3 to 4</div>
+      <h3 class="horizon-title">The refinance. The real test.</h3>
+      <p class="horizon-body">The asset is stabilized. The refi happens against near stabilized cash flows and returns substantial LP capital. The four of us are operating at strategic and board level. The GM and senior hotel team run the property. This is the moment we know whether the partnership and the asset have done what we underwrote. The roles described earlier are largely behind us.</p>
+    </div>
+  </div>
+
+  <div class="reminder">Read every section that follows with this in mind. We are designing for the figuring it out period, not the steady state.</div>
+</section>
+
+<!-- ============ RAISING THE 49% ============ -->
+<section class="section" id="raise">
+  <div class="section-number">05 — Raising The 49%</div>
+  <h2 class="section-heading">Sourcing the LP tranche. <em>Without crossing wires.</em></h2>
+  <p class="section-lead">Mark and Michael have been asked to lead sourcing the LP equity. Here's a working view of how that runs alongside the institutional IR work Michelle leads at and after close.</p>
+
+  <div class="prose">
+    <p>Goal: roughly <strong>$2.6M in LP equity</strong>, substantively closed within 90 days, with signed commitment letters by end of due diligence. Confidence over urgency. Runway exists; we do not advertise it.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pull-quote-text">Every investor is the partnership's investor. Every investor also has a relationship owner — whoever sourced them and holds the trust. The relationship owner stays the primary point of contact for the life of the deal, even when the conversation needs skills they don't carry.</p>
+    <div class="pull-quote-attribution">How We Avoid Crossed Wires</div>
+  </div>
+
+  <div class="prose">
+    <p><strong>How it works.</strong> Mark and Michael source. They hold the personal relationship for life. Michelle runs the institutional side — diligence, structuring, close, quarterly reporting, refi communications. Originator brings Michelle in for the right conversations, stays in the room, and remains the investor's first call. Raymond engages on senior moments.</p>
+  </div>
+
+  <div class="stages">
+    <div class="stage-row">
+      <div class="stage-num">01</div>
+      <div class="stage-content">
+        <h4>First conversation</h4>
+        <p>Personal, brand led. Read the temperature, get to check size.</p>
+        <div class="stage-lead">Lead — Originator (Mark or Michael)</div>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-num">02</div>
+      <div class="stage-content">
+        <h4>Pitch meeting</h4>
+        <p>Originator leads. Michelle or Raymond joins for institutional credibility, depending on investor profile.</p>
+        <div class="stage-lead">Lead — Originator · Support — Michelle or Raymond</div>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-num">03</div>
+      <div class="stage-content">
+        <h4>Diligence and terms</h4>
+        <p>Michelle leads. Institutional rigor on financials, structure, returns, legal. Originator stays warm.</p>
+        <div class="stage-lead">Lead — Michelle</div>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-num">04</div>
+      <div class="stage-content">
+        <h4>Close</h4>
+        <p>Michelle leads the legal and financial close. Raymond signs. Originator welcomes the investor in.</p>
+        <div class="stage-lead">Lead — Michelle · Signatory — Raymond</div>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-num">05</div>
+      <div class="stage-content">
+        <h4>Ongoing IR</h4>
+        <p>Originator is the investor's first call for life. Michelle runs quarterly reports and capital communications. Raymond engages on milestones. Michael provides asset context.</p>
+        <div class="stage-lead">Primary contact — Originator · Reporting — Michelle</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:32px;">
+    <p><strong>Where we go for the money.</strong> Three channels in parallel. <em>Direct</em> is fastest: personal HNW network, past LBHG and Comporta LPs, Las Brisas relationships, family referrals, anchor conversations with Doug, Dominique, Bob Best. <em>Institutional</em> brings larger checks but takes longer: single and multi family offices, hospitality investment funds, strategic operators, Michelle's Marriott and Starwood alumni network. <em>Intermediated</em> widens reach at a fee: placement agents at 3 to 3.5 percent, hospitality brokers like Hodges Ward Elliott or RobertDouglas or JMBM.</p>
+    <p><strong>The anchor strategy.</strong> One large committed check early in the window changes the gravity of every other conversation. First priority is a single signature at $1M or above. Doug, Dominique, and the Comporta pool are the strongest near term candidates. Bob Best is tested early so the equity story doesn't depend on his answer.</p>
+  </div>
+
+  <div class="reminder">If Michelle, Michael, or Raymond have investor relationships they'd like to bring, the relationship owner principle applies to them just as it does to Mark and Michael. The point is no investor is anyone's possession; the point is no investor experiences crossed wires.</div>
+</section>
+
+<!-- ============ PRE-CLOSE COSTS ============ -->
+<section class="section" id="seed">
+  <div class="section-number">06 — Pre Close Costs</div>
+  <h2 class="section-heading">The costs to reach close. <em>How we treat them.</em></h2>
+  <p class="section-lead">Michelle and Mark are covering the legal and diligence costs to reach close. Raymond is writing the $650K GP cash. Different forms of risk to reach the same close. Here's a working view of how the pre close costs flow back through.</p>
+
+  <div class="prose">
+    <p>Pre close costs include PSA and operating agreement legal, BIA counsel, SBA lender legal and packaging, environmental and physical diligence, accounting and tax, operating model professional fees, and travel. Likely range <strong>$75K to $200K+</strong> across the diligence window. If the deal dies, these are gone. If the deal closes, they get treated one of these ways.</p>
+  </div>
+
+  <div class="lens-stack">
+    <div class="lens">
+      <h3 class="lens-title">Lens 01 — Goodwill</h3>
+      <p class="lens-body">No payback. Treated as a gift to the deal. Simple, but transfers real risk from the partnership to two principals without any acknowledgment, and that's not how we want to operate going forward.</p>
+    </div>
+
+    <div class="lens recommended">
+      <div class="lens-tag">A starting view</div>
+      <h3 class="lens-title">Lens 02 — Recoupable at 1.25x</h3>
+      <p class="lens-body">Documented as Pre Close Advance Notes. <strong>Reimbursed at close at 1.25x the advanced amount, before any equity distribution.</strong> If the deal dies, the advance is lost in full. The 1.25x is a modest recognition that two principals are absorbing 100 percent of the downside if the deal fails to close. Clean to administer, fair on both sides, normal for partner advanced capital, and easy to point at if anyone asks.</p>
+    </div>
+
+    <div class="lens">
+      <h3 class="lens-title">Lens 03 — Reimbursement at par</h3>
+      <p class="lens-body">Same mechanic, no premium. Cleanest possible version. If the family prefers no premium, this works too and we move on.</p>
+    </div>
+  </div>
+
+  <div class="reminder">All of this is open. The point is to have one written view of how it could work, not to settle it in advance of a real conversation.</div>
+</section>
+
+<!-- ============ WHAT'S NEXT ============ -->
+<section class="section" id="next">
+  <div class="section-number">07 — What's Next</div>
+  <h2 class="section-heading">A working draft. <em>Built together from here.</em></h2>
+
+  <div class="prose">
+    <p><strong>One.</strong> A call. All four of us, on the same line. Walk through this together. Anything that's wrong, mark it. Anything missing, add it.</p>
+    <p><strong>Two.</strong> v0.3 incorporates what we agree on. Anything we don't agree on gets flagged as open, not buried.</p>
+    <p><strong>Three.</strong> Adopt a clean version at the first Board meeting after close, with the understanding that we'll revisit it annually because we'll know more then than we do now.</p>
+    <p><strong>Four.</strong> The real moment of truth isn't this document. It's the refinance, three or four years from now. Between now and then, this is just a working sketch of how four people who like and trust each other are going to build something rare.</p>
+  </div>
+
+  <div class="gold-rule"></div>
+
+  <p style="font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink-soft);margin-top:32px;">The deal is real. The structure is right. The basis is rare. The four of us are at a starting line, not a finish line. Let's go.</p>
+</section>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="foot">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-mark">Las Brisas <em>·</em> Hotel Group</div>
+      <div class="foot-block" style="margin-top:18px;">
+        v0.2 Working Draft<br>
+        Just a starting place
+      </div>
+    </div>
+    <div class="foot-block" style="text-align:right;">
+      <strong>The Tropics</strong><br>
+      Palm Springs · California
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
